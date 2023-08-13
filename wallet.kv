@@ -156,12 +156,78 @@
 
 
 
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 10
+            padding: 50, 20, 50, 20
 
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(10)  # Define o espaçamento entre os filhos do BoxLayout
+                padding: dp(20)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 10
+                    padding: -50, 20, 50, 20
+
+                    Label:
+                        id: label_entradas  # Atribua um ID ao Label para poder acessá-lo no arquivo .py
+                        text: root.label_entradas  # Vincule o texto do Label à propriedade label_entradas no arquivo .py
+                        size_hint: None, None
+                        color: 0, 0, 0, 1
+
+                    Label:
+                        id: label_entradas_valor  # Atribua um ID ao Label para poder acessá-lo no arquivo .py
+                        text: root.label_valor_entradas  # Vincule o texto do Label à propriedade label_entradas no arquivo .py
+                        size_hint: None, None
+                        color: 0, 0, 0, 1
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 10
+                    padding: -50, 20, 50, 20
+                    Label:
+                        id:label_saidas
+                        text: root.label_saidas
+                        size_hint: None, None
+                        color: 0, 0, 0, 1
+                    Label:
+                        id: label_valor_saidas
+                        text: root.label_valor_saidas      
+                        size_hint: None, None   
+                        color: 0, 0, 0, 1
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: 10
+                    padding: -50, 20, 50, 20
+
+                    Label:
+                        id: label_total
+                        text:  root.label_total
+                        size_hint: None, None   
+                        color: 0, 0, 0, 1
+
+                    Label:
+                        id:label_valor_total
+                        text: root.label_valor_total
+                        size_hint: None, None   
+                        color: 0, 0, 0, 1
+                    
+    
 
 
         BoxLayout:
             orientation: 'vertical'
 
+
+
+            Button:
+                text: "Atualizar"
+                on_release: root.alterar_valor_label()  # Chama o método no arquivo .py
+                size_hint: None, None
+                size: 200, 50
+                pos_hint: {'center_x': 0.5}
 
             Button:
                 text: 'Voltar'
@@ -169,4 +235,3 @@
                 size: 200, 50
                 pos_hint: {'center_x': 0.5}
                 on_release: root.voltar_main()
-

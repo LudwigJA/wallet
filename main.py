@@ -45,11 +45,47 @@ class NewTr(Screen):
             conn.commit()
             conn.close()
         
-class Exibir_Op(Screen):        
+class Exibir_Op(Screen):
+                
+        label_entradas = "Entradas: "
+        label_valor_entradas = "R$ 0,00"
+        label_saidas = "Saídas: "
+        label_valor_saidas = "R$ 0,00"
+        label_total = "Resultado:  "
+        label_valor_total = "R$ 0,00"
+
+        
+       
+
         
         def voltar_main(self):
-             self.manager.current = 'main'
+            self.manager.current = 'main'
 
+        def alterar_valor_label(self):
+
+            filtra_data = "2023-08-13"
+
+            conn = sqlite3.connect('wallet.db')
+            c = conn.cursor()
+            c.execute("SELECT * FROM operacoes WHERE data = ?", (filtra_data,))
+            results = c.fetchall()
+
+            somaEntrada = 0.0
+            somaSaida = 0.0
+            total = 0.0
+            print(results)
+
+            for row in results:
+                tipo, nome, forma, valor, data = row
+                if tipo == 'Entrada':
+                    somaEntrada += valor
+                elif tipo == 'Saída':
+                    somaSaida += valor
+            total = somaEntrada - somaSaida
+
+            self.ids.label_entradas_valor.text = "R$ " + str(somaEntrada)  # Altera o valor da propriedade, que atualiza o Label
+            self.ids.label_valor_saidas.text = "R$ " + str(somaSaida)
+            self.ids.label_valor_total.text = "R$  " + str(int(total))
     
 
 
