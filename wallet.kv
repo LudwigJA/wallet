@@ -1,0 +1,172 @@
+#:kivy 2.0.0
+
+<MainScreen>:
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # Cor branca (RGBA: vermelho, verde, azul, alfa)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 0
+        padding: 0, 400
+        
+        
+        BoxLayout:
+            size_hint: 1, None
+            height: 1
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: 200, 0
+            pos_hint: {'center_x': 0.5}
+            
+            
+            Button:
+                text: 'Nova Transação'
+                size_hint: None, None
+                size: 200, 50
+                on_release: app.root.current = 'newtr'
+            
+            Button:
+                text: 'Relatórios'
+                size_hint: None, None
+                size: 200, 50
+                on_release: app.root.current = 'exibir_op'
+            
+            Button:
+                text: 'Configurações'
+                size_hint: None, None
+                size: 200, 50
+                on_release: app.root.current = 'configuracoes'
+
+<NewTr>:
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # Cor branca (RGBA: vermelho, verde, azul, alfa)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50, 20, 50, 20  # Margens superior, direita, inferior e esquerda, respectivamente
+        spacing: 30  # Espaçamento entre os widgets dentro do layout
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: ''
+                color: 0, 0, 0, 1
+            
+            Spinner:
+                id: tipo_op
+                values: ["Entrada", "Saída"]
+                background_color: 1, 1, 1, 1
+                text: "Escolha o tipo de operação"
+
+
+            Label:
+                id: value_label1
+                text: ""
+                color: 0, 0, 0, 1
+
+        
+        BoxLayout:
+            orientation: 'vertical'
+           
+            TextInput:
+                
+                hint_text: 'Descrição da operação'
+                background_color: 1, 1, 1, 1
+                id: nome_op
+                multiline: False
+                height: 20           
+               
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: ''
+                color: 0, 0, 0, 1
+            
+            Spinner:
+                id: forma_op
+                values: ["C. Crédito", "Dinheiro", "C. Débito", "Pix"]
+                background_color: 1, 1, 1, 1
+                text: "Escolha a forma de pagamento"
+
+            Label:
+                id: value_label1
+                text: ""
+                color: 0, 0, 0, 1
+
+        BoxLayout:
+            orientation: 'vertical'
+           
+            TextInput:
+                
+                hint_text: 'Valor da transação'
+                background_color: 1, 1, 1, 1
+                id: valor_op
+                multiline: False
+                height: 20      
+                            
+               
+        BoxLayout:
+            orientation: 'vertical'
+            
+            
+            Button:
+                text: 'Salvar'
+                size_hint: None, None
+                size: 200, 50
+                pos_hint: {'center_x': 0.5}
+                on_release: root.on_button_release()
+
+
+            Button:
+                text: 'Voltar'
+                size_hint: None, None
+                size: 200, 50
+                pos_hint: {'center_x': 0.5}
+                on_release: root.voltar_main()
+
+
+<Exibir_Op>:
+
+
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # Cor branca (RGBA: vermelho, verde, azul, alfa)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 50, 20, 50, 20  # Margens superior, direita, inferior e esquerda, respectivamente
+        spacing: 30  # Espaçamento entre os widgets dentro do layout
+
+
+
+
+
+
+        BoxLayout:
+            orientation: 'vertical'
+
+
+            Button:
+                text: 'Voltar'
+                size_hint: None, None
+                size: 200, 50
+                pos_hint: {'center_x': 0.5}
+                on_release: root.voltar_main()
+
